@@ -26,7 +26,6 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
             Playlist(2, "Playlist 2"),
             Playlist(3, "Playlist 3"),
             Playlist(4, "Playlist 4"),
-            Playlist(5, "+ Add a playlist")
         )
     }
 

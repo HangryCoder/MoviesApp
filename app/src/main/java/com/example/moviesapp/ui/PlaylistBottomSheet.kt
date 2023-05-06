@@ -21,7 +21,7 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
 //    @Inject
 //    lateinit var viewModel: MovieViewModel
 
-    var viewModel: MovieViewModel? =  null //(activity as MainActivity).viewModel
+    var viewModel: MovieViewModel? = null
 
     /*  override fun onAttach(context: Context) {
           (activity as MainActivity).activityComponent.inject(this)
@@ -37,26 +37,34 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initSetup()
+    }
 
+    private fun initSetup() {
+        setupRecyclerView()
+        fetchPlaylists()
+        setClickListeners()
+    }
+
+    private fun setupRecyclerView() {
+        binding.playlistRecyclerView.adapter = playlistAdapter
+    }
+
+    private fun fetchPlaylists() {
         //Temporarily using this hack to access viewModel
         viewModel = (activity as MainActivity).viewModel
+
         viewModel?.playlists?.observe(this) {
             playlistAdapter.playlists = it as ArrayList<Playlist>?
         }
+    }
 
-        playlistAdapter.apply {
-            onClick = { position ->
-                playlists?.let {
-                    if (position == it.size - 1) {
-                        AddPlaylistDialog().show(
-                            childFragmentManager, AddPlaylistDialog.TAG
-                        )
-                    }
-                }
-            }
+    private fun setClickListeners() {
+        binding.addAPlaylistButton.setOnClickListener {
+            AddPlaylistDialog().show(
+                childFragmentManager, AddPlaylistDialog.TAG
+            )
         }
-
-        binding.playlistRecyclerView.adapter = playlistAdapter
     }
 
     companion object {
