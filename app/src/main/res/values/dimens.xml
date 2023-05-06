@@ -3,4 +3,6 @@
     <dimen name="title_size">22sp</dimen>
     <dimen name="poster_size">200dp</dimen>
     <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="enter_playlist_name_text_size">18sp</dimen>
+    <dimen name="padding_4dp">4dp</dimen>
 </resources>
