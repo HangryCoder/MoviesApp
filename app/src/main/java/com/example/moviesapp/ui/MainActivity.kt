@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.moviesapp.MyApplication
 import com.example.moviesapp.databinding.ActivityMainBinding
+import com.example.moviesapp.di.ActivityComponent
 import com.example.moviesapp.model.Movie
 import com.example.moviesapp.ui.adapter.MovieAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MovieViewModel
 
+    lateinit var activityComponent : ActivityComponent
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDagger()
         super.onCreate(savedInstanceState)
@@ -29,7 +32,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupDagger() {
-        (application as MyApplication).appComponent.activityComponent().create().inject(this)
+        activityComponent = (application as MyApplication).appComponent.activityComponent().create()
+        activityComponent.inject(this)
+
     }
 
     private fun initialSetup() {
