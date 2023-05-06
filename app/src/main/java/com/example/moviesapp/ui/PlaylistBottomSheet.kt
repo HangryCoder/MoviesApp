@@ -41,7 +41,9 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
             onClick = { position ->
                 playlists?.let {
                     if (position == it.size - 1) {
-                        alertDialog?.show()
+                        //alertDialog?.show()
+                        AddPlaylistDialog().show(
+                            childFragmentManager, AddPlaylistDialog.TAG)
                     }
                 }
             }
