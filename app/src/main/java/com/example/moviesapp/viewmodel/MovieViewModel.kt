@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.model.Movie
 import com.example.moviesapp.model.Playlist
 import com.example.moviesapp.repository.MovieRepository
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
-    private val apiKey = "38a73d59546aa378980a88b645f487fc"
+    private val apiKey = BuildConfig.API_BASE
     private var _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> by lazy { _movies }
 
@@ -30,7 +31,6 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
     }
 

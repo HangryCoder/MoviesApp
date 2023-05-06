@@ -19,9 +19,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "API_BASE", '"38a73d59546aa378980a88b645f487fc"'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_BASE", '""'
         }
     }
     compileOptions {
@@ -34,6 +38,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig = true
     }
 }
 
