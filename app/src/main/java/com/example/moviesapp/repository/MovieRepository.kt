@@ -1,10 +1,9 @@
 package com.example.moviesapp.repository
 
-import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.datasource.LocalDataSource
 import com.example.moviesapp.datasource.RemoteDataSource
-import com.example.moviesapp.networking.MoviesApi
+import com.example.moviesapp.utils.toMovieEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,28 +11,18 @@ import javax.inject.Singleton
 class MovieRepository @Inject constructor(
     private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource
 ) {
-
-    /* suspend fun getPopularMovies(apiKey: String) = remoteDataSource.getPopularMovies(apiKey)
-    */
-
-    /*suspend fun getPopularMovies() {
-        val movies = localDataSource.getPopularMoviesFromDB()
-        if (movies == null) {
-
-        } else {
-
-        }
-    }*/
-
-   /* suspend fun getPopularMovies() =
-        remoteDataSource.getPopularMovies()*/
-
-    suspend fun getPopularMovies(): List<Movie>  {
-        val movies = localDataSource.getPopularMoviesFromDB()
-        if (movies == null) {
-
-        } else {
-
+    suspend fun getPopularMovies(): List<Movie>? {
+        var movies: List<Movie>? = localDataSource.getPopularMoviesFromDB()
+        if (movies.isNullOrEmpty()) {
+            try {
+                val response = remoteDataSource.getPopularMovies()
+                movies = response.toMovieEntity()
+                movies?.let {
+                    localDataSource.insertMovies(it)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
         return movies
