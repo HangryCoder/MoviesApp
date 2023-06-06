@@ -21,14 +21,6 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
 
     fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            /* try {
-                 val response = repository.getPopularMovies()
-                 response.results?.let {
-                     _movies.postValue(it)
-                 }
-             } catch (e: Exception) {
-                 e.printStackTrace()
-             }*/
             val response = repository.getPopularMovies()
             response?.let {
                 _movies.postValue(it)

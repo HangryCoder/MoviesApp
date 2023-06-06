@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupDagger() {
         activityComponent = (application as MyApplication).appComponent.activityComponent().create()
         activityComponent.inject(this)
-
     }
 
     private fun initialSetup() {
