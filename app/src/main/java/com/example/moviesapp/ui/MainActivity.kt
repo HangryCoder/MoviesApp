@@ -3,9 +3,9 @@ package com.example.moviesapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.moviesapp.MyApplication
+import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.databinding.ActivityMainBinding
 import com.example.moviesapp.di.ActivityComponent
-import com.example.moviesapp.model.Movie
 import com.example.moviesapp.ui.adapter.MovieAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
 import javax.inject.Inject

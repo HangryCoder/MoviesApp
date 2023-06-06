@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviesapp.BuildConfig
-import com.example.moviesapp.model.Movie
+import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.model.Playlist
 import com.example.moviesapp.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
@@ -22,13 +21,17 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
 
     fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = repository.getPopularMovies()
-                response.results?.let {
-                    _movies.postValue(it)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+            /* try {
+                 val response = repository.getPopularMovies()
+                 response.results?.let {
+                     _movies.postValue(it)
+                 }
+             } catch (e: Exception) {
+                 e.printStackTrace()
+             }*/
+            val response = repository.getPopularMovies()
+            response?.let {
+                _movies.postValue(it)
             }
         }
     }

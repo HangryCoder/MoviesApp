@@ -12,7 +12,9 @@ class DatabaseModule(val applicationContext: Context) {
 
     @Singleton
     @Provides
-    fun provideApplicationContext() = applicationContext
+    fun provideApplicationContext(): Context {
+        return applicationContext
+    }
 
     @Singleton
     @Provides
