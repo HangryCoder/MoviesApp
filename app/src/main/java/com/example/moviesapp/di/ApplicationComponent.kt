@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [NetworkModule::class, SubcomponentsModule::class/*, ApplicationModule::class*/]
+    modules = [NetworkModule::class, SubcomponentsModule::class, DatabaseModule::class]
 )
 interface ApplicationComponent {
     fun activityComponent(): ActivityComponent.Factory

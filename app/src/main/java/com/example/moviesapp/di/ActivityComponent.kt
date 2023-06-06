@@ -14,5 +14,5 @@ interface ActivityComponent {
     }
 
     fun inject(activity: MainActivity)
-    fun inject(dialog: BottomSheetDialogFragment)
+    //fun inject(dialog: BottomSheetDialogFragment)
 }
