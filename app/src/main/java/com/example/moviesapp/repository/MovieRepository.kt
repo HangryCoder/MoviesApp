@@ -1,6 +1,7 @@
 package com.example.moviesapp.repository
 
 import com.example.moviesapp.database.entities.Movie
+import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
 import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.datasource.LocalDataSource
 import com.example.moviesapp.datasource.RemoteDataSource
@@ -31,6 +32,14 @@ class MovieRepository @Inject constructor(
 
     suspend fun addPlaylist(playlist: Playlist) {
         localDataSource.addPlaylist(playlist)
+    }
+
+    suspend fun addMovieToPlaylist(movieId: Int?, playlistId: Int?) {
+        localDataSource.insertMovieIntoPlaylist(
+            MoviePlaylistCrossRef(
+                movieId = movieId, playlistId = playlistId
+            )
+        )
     }
 
     suspend fun getPlaylists(): List<Playlist> {

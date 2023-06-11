@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter.buttonClick = {
+            viewModel.setMovieId(it)
             PlaylistBottomSheet().apply {
                 show(supportFragmentManager, PlaylistBottomSheet.TAG)
             }

@@ -17,7 +17,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             notifyDataSetChanged()
         }
 
-    var buttonClick: (() -> Unit)? = null
+    var buttonClick: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -51,7 +51,9 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             movieTitleTextView.text = movie.title
             movieRatingTextView.text = "Rating: ${movie.rating}"
             starButton.setOnClickListener {
-                buttonClick?.invoke()
+                movie.movieId?.let { id ->
+                    buttonClick?.invoke(id)
+                }
             }
 
             //moviePlaylistTextView.text = "Playlist 1"
