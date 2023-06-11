@@ -32,7 +32,9 @@ class PlaylistAdapter : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>
         fun bind(playlist: Playlist, position: Int) {
             playlistTextView.text = playlist.name ?: "Playlist ${position + 1}"
             playlistTextView.setOnClickListener {
-                onClick?.invoke(position)
+                playlist.playlistId?.let {
+                    onClick?.invoke(it)
+                }
             }
         }
     }
