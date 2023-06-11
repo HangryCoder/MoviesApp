@@ -6,6 +6,6 @@ import com.example.moviesapp.model.MovieResults
 fun MovieResults.toMovieEntity(): List<Movie>? {
     val movieResults = this.results
     return movieResults?.map {
-        Movie(id = it.id, title = it.title, poster = it.poster, rating = it.rating.toString())
+        Movie(movieId = it.id, title = it.title, poster = it.poster, rating = it.rating.toString())
     }
 }
