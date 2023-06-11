@@ -9,5 +9,4 @@ data class Movie(
     val title: String?,
     val poster: String?,
     val rating: String?,
-    val playlistIds: List<Int>? = null
 )

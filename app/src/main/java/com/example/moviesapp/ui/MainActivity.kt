@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MovieViewModel
 
-    lateinit var activityComponent : ActivityComponent
+    lateinit var activityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDagger()
