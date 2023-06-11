@@ -54,6 +54,7 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
         //Temporarily using this hack to access viewModel
         viewModel = (activity as MainActivity).viewModel
 
+        viewModel?.getPlaylists()
         viewModel?.playlists?.observe(this) {
             playlistAdapter.playlists = it
             playlistAdapter.notifyDataSetChanged()

@@ -3,12 +3,12 @@ package com.example.moviesapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.databinding.ItemPlaylistBinding
-import com.example.moviesapp.model.Playlist
 
 class PlaylistAdapter : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
 
-    var playlists: ArrayList<Playlist>? = null
+    var playlists: List<Playlist>? = null
     var onClick: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder {
@@ -30,7 +30,7 @@ class PlaylistAdapter : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>
         private val playlistTextView = binding.playlistTextView
 
         fun bind(playlist: Playlist, position: Int) {
-            playlistTextView.text = playlist.playlistName ?: "Playlist ${position + 1}"
+            playlistTextView.text = playlist.name ?: "Playlist ${position + 1}"
             playlistTextView.setOnClickListener {
                 onClick?.invoke(position)
             }

@@ -1,6 +1,7 @@
 package com.example.moviesapp.repository
 
 import com.example.moviesapp.database.entities.Movie
+import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.datasource.LocalDataSource
 import com.example.moviesapp.datasource.RemoteDataSource
 import com.example.moviesapp.utils.toMovieEntity
@@ -26,5 +27,13 @@ class MovieRepository @Inject constructor(
         }
 
         return movies
+    }
+
+    suspend fun addPlaylist(playlist: Playlist) {
+        localDataSource.addPlaylist(playlist)
+    }
+
+    suspend fun getPlaylists(): List<Playlist> {
+        return localDataSource.getPlaylists()
     }
 }
