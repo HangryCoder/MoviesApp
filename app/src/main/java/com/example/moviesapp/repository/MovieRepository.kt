@@ -34,7 +34,7 @@ class MovieRepository @Inject constructor(
         localDataSource.addPlaylist(playlist)
     }
 
-    suspend fun addMovieToPlaylist(movieId: Int?, playlistId: Int?) {
+    suspend fun addMovieToPlaylist(movieId: Int, playlistId: Int) {
         localDataSource.insertMovieIntoPlaylist(
             MoviePlaylistCrossRef(
                 movieId = movieId, playlistId = playlistId

@@ -19,7 +19,7 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
     private var _playlists = MutableLiveData<List<Playlist>>()
     val playlists: LiveData<List<Playlist>> by lazy { _playlists }
 
-    private var selectedMovieId: Int? = null
+     var selectedMovieId: Int? = null
 
     fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -43,7 +43,7 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
 
     fun addMovieToPlaylist(playlistId: Int?) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addMovieToPlaylist(movieId = selectedMovieId, playlistId = playlistId)
+            repository.addMovieToPlaylist(movieId = selectedMovieId!!, playlistId = playlistId!!)
         }
     }
 

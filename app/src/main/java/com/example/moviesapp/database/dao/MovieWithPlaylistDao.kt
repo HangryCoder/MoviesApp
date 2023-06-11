@@ -16,5 +16,5 @@ interface MovieWithPlaylistDao {
 
     @Transaction
     @Query("SELECT * FROM Movie")
-    fun getMoviesWithPlaylists(): List<MovieWithPlaylists>
+    suspend fun getMoviesWithPlaylists(): List<MovieWithPlaylists>
 }

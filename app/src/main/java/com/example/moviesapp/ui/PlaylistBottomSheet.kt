@@ -3,6 +3,7 @@ package com.example.moviesapp.ui
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,8 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
     private fun fetchPlaylists() {
         //Temporarily using this hack to access viewModel
         viewModel = (activity as MainActivity).viewModel
+
+        Log.e("TAG", viewModel?.selectedMovieId.toString())
 
         viewModel?.getPlaylists()
         viewModel?.playlists?.observe(this) {

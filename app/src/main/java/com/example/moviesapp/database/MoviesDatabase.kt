@@ -7,9 +7,10 @@ import com.example.moviesapp.database.dao.MovieDao
 import com.example.moviesapp.database.dao.MovieWithPlaylistDao
 import com.example.moviesapp.database.dao.PlaylistDao
 import com.example.moviesapp.database.entities.Movie
+import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
 import com.example.moviesapp.database.entities.Playlist
 
-@Database(entities = [Movie::class, Playlist::class, MovieWithPlaylists::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class, Playlist::class, MoviePlaylistCrossRef::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
