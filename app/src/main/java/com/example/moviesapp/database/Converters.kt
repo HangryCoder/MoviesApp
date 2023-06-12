@@ -22,14 +22,4 @@ class Converters {
             str.split(",").map { it.toInt() }
         } else emptyList()
     }
-
-    /*@TypeConverter
-    fun fromIntegerToString(value: Int): String {
-       return value.toString()
-    }*/
-
-    /* @TypeConverter
-     fun fromStringToInteger(str: String): Int {
-         return
-     }*/
 }

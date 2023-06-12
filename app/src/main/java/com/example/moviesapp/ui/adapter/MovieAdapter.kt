@@ -41,11 +41,8 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         private val moviePosterImageView = binding.moviePoster
         private val starButton = binding.movieStarButton
 
-        //eg: https://image.tmdb.org/t/p/w500/p60VSQL7usdxztIGokJPpHmKWdU.jpg
-
         fun bind(movie: Movie) {
             Glide.with(moviePosterImageView.context).load(MOVIE_BASE_URL + movie.poster)
-                //.placeholder()
                 .into(moviePosterImageView)
 
             movieTitleTextView.text = movie.title
@@ -56,7 +53,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
                 }
             }
 
-            //moviePlaylistTextView.text = "Playlist 1"
+            moviePlaylistTextView.text = "Playlist 1"
         }
     }
 }

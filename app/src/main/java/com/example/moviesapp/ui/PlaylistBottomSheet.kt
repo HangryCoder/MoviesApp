@@ -3,12 +3,10 @@ package com.example.moviesapp.ui
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.moviesapp.databinding.PlaylistBottomSheetBinding
-import com.example.moviesapp.model.Playlist
 import com.example.moviesapp.ui.adapter.PlaylistAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
