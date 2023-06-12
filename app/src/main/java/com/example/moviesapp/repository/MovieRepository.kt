@@ -31,6 +31,23 @@ class MovieRepository @Inject constructor(
         return movies
     }
 
+    suspend fun getPopularMoviesWithPlaylists(): List<MovieWithPlaylists>? {
+        var movieWithPlaylists: List<MovieWithPlaylists>? = localDataSource.getMovieWithPlaylists()
+        if (movieWithPlaylists.isNullOrEmpty()) {
+            try {
+                val response = remoteDataSource.getPopularMovies()
+                response.toMovieEntity()?.let {
+                    localDataSource.insertMovies(it)
+                }
+                movieWithPlaylists = localDataSource.getMovieWithPlaylists()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        return movieWithPlaylists
+    }
+
     suspend fun addPlaylist(playlist: Playlist) {
         localDataSource.addPlaylist(playlist)
     }
