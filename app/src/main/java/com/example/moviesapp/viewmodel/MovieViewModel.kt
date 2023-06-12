@@ -41,19 +41,25 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
         }
     }
 
-    fun updateMoviePlaylistId(playlistId: Int?) {
+   /* fun updateMoviePlaylistId(playlistId: Int?) {
         viewModelScope.launch(Dispatchers.IO) {
             val playlistIds = repository.getMovie(selectedMovieId!!).playlistIds
             val newIds = playlistIds.toMutableList()
             newIds.add(playlistId!!)
             repository.updatePlaylistIds(newIds.toList(), selectedMovieId!!)
         }
-    }
+    }*/
 
     fun getPlaylists() {
         viewModelScope.launch(Dispatchers.IO) {
             val allPlaylists = repository.getPlaylists()
             _playlists.postValue(allPlaylists)
+        }
+    }
+
+    fun addMovieToPlaylist(playlistId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addMovieToPlaylist(selectedMovieId!!, playlistId)
         }
     }
 }

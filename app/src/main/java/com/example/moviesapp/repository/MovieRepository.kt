@@ -1,6 +1,8 @@
 package com.example.moviesapp.repository
 
+import com.example.moviesapp.database.MovieWithPlaylists
 import com.example.moviesapp.database.entities.Movie
+import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
 import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.datasource.LocalDataSource
 import com.example.moviesapp.datasource.RemoteDataSource
@@ -29,23 +31,19 @@ class MovieRepository @Inject constructor(
         return movies
     }
 
-    /*suspend fun getMoviePlaylistIds(id: Int): List<Int> {
-        return localDataSource.getMoviePlaylistIds(id)
-    }*/
-
-    suspend fun getMovie(id: Int): Movie {
-        return localDataSource.getMovie(id)
-    }
-
-    suspend fun updatePlaylistIds(playlistIds: List<Int>, movieId: Int) {
-       localDataSource.updatePlaylistIds(playlistIds, movieId)
-    }
-
     suspend fun addPlaylist(playlist: Playlist) {
         localDataSource.addPlaylist(playlist)
     }
 
     suspend fun getPlaylists(): List<Playlist> {
         return localDataSource.getPlaylists()
+    }
+
+    suspend fun getMovieWithPlaylists(): List<MovieWithPlaylists> {
+        return localDataSource.getMovieWithPlaylists()
+    }
+
+    suspend fun addMovieToPlaylist(movieId: Int, playlistId: Int) {
+        localDataSource.addMovieToPlaylist(MoviePlaylistCrossRef(movieId, playlistId))
     }
 }

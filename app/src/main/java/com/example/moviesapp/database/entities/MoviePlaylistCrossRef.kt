@@ -2,9 +2,7 @@ package com.example.moviesapp.database.entities
 
 import androidx.room.Entity
 
-/*
-@Entity(primaryKeys = ["playlistId", "movieId"])
+@Entity(primaryKeys = ["movieId", "playlistId"])
 data class MoviePlaylistCrossRef(
-    val playlistId: Int,
-    val movieId: Int
-)*/
+    val movieId: Int, val playlistId: Int
+)

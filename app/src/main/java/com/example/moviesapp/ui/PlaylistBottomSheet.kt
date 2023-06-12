@@ -47,7 +47,7 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupRecyclerView() {
         playlistAdapter.onClick = {
-            viewModel?.updateMoviePlaylistId(it)
+            viewModel?.addMovieToPlaylist(it)
             this.dismiss()
         }
         binding.playlistRecyclerView.adapter = playlistAdapter
