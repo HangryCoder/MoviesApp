@@ -9,10 +9,6 @@ import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val database: MovieDatabase) {
 
-    suspend fun getPopularMoviesFromDB(): List<Movie> {
-        return database.movieDao().getAll()
-    }
-
     suspend fun insertMovies(movies: List<Movie>) {
         database.movieDao().insertAll(movies)
     }

@@ -3,8 +3,6 @@ package com.example.moviesapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.moviesapp.MyApplication
-import com.example.moviesapp.database.MovieWithPlaylists
-import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.databinding.ActivityMainBinding
 import com.example.moviesapp.di.ActivityComponent
 import com.example.moviesapp.ui.adapter.MovieAdapter
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getPopularMoviesWithPlaylists()
 
         viewModel.moviesWithPlaylists.observe(this) { moviesWithPlaylists ->
-            adapter.moviesWithPlaylists = moviesWithPlaylists// as ArrayList<MovieWithPlaylists>?
+            adapter.moviesWithPlaylists = moviesWithPlaylists
         }
     }
 

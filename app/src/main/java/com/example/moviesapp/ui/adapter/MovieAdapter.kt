@@ -43,8 +43,8 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         private val starButton = binding.movieStarButton
 
         fun bind(movieWithPlaylists: MovieWithPlaylists) {
-            Glide.with(moviePosterImageView.context).load(MOVIE_BASE_URL + movieWithPlaylists.movie.poster)
-                .into(moviePosterImageView)
+            Glide.with(moviePosterImageView.context)
+                .load(MOVIE_BASE_URL + movieWithPlaylists.movie.poster).into(moviePosterImageView)
 
             movieTitleTextView.text = movieWithPlaylists.movie.title
             movieRatingTextView.text = "Rating: ${movieWithPlaylists.movie.rating}"
@@ -55,7 +55,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             }
 
             moviePlaylistTextView.text = movieWithPlaylists.playlists.joinToString {
-                it.name + ","
+                it.name.toString()
             }
         }
     }

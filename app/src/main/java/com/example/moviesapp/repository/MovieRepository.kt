@@ -14,23 +14,6 @@ import javax.inject.Singleton
 class MovieRepository @Inject constructor(
     private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource
 ) {
-    //Delete this
-    suspend fun getPopularMovies(): List<Movie>? {
-        var movies: List<Movie>? = localDataSource.getPopularMoviesFromDB()
-        if (movies.isNullOrEmpty()) {
-            try {
-                val response = remoteDataSource.getPopularMovies()
-                movies = response.toMovieEntity()
-                movies?.let {
-                    localDataSource.insertMovies(it)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-
-        return movies
-    }
 
     suspend fun getPopularMoviesWithPlaylists(): List<MovieWithPlaylists>? {
         var movieWithPlaylists: List<MovieWithPlaylists>? = localDataSource.getMovieWithPlaylists()

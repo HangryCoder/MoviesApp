@@ -14,9 +14,6 @@ import javax.inject.Inject
 
 class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
-    private var _movies = MutableLiveData<List<Movie>>()
-    val movies: LiveData<List<Movie>> by lazy { _movies }
-
     private var _moviesWithPlaylists = MutableLiveData<List<MovieWithPlaylists>>()
     val moviesWithPlaylists: LiveData<List<MovieWithPlaylists>> by lazy { _moviesWithPlaylists }
 
@@ -24,15 +21,6 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
     val playlists: LiveData<List<Playlist>> by lazy { _playlists }
 
     var selectedMovieId: Int? = null
-
-    fun getPopularMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getPopularMovies()
-            response?.let {
-                _movies.postValue(it)
-            }
-        }
-    }
 
     fun getPopularMoviesWithPlaylists() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -65,6 +53,7 @@ class MovieViewModel @Inject constructor(private val repository: MovieRepository
         val movieId = selectedMovieId ?: return
         viewModelScope.launch(Dispatchers.IO) {
             repository.addMovieToPlaylist(movieId, playlistId)
+            getPopularMoviesWithPlaylists()
         }
     }
 }
