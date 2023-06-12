@@ -14,6 +14,7 @@ import javax.inject.Singleton
 class MovieRepository @Inject constructor(
     private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource
 ) {
+    //Delete this
     suspend fun getPopularMovies(): List<Movie>? {
         var movies: List<Movie>? = localDataSource.getPopularMoviesFromDB()
         if (movies.isNullOrEmpty()) {
@@ -54,10 +55,6 @@ class MovieRepository @Inject constructor(
 
     suspend fun getPlaylists(): List<Playlist> {
         return localDataSource.getPlaylists()
-    }
-
-    suspend fun getMovieWithPlaylists(): List<MovieWithPlaylists> {
-        return localDataSource.getMovieWithPlaylists()
     }
 
     suspend fun addMovieToPlaylist(movieId: Int, playlistId: Int) {
