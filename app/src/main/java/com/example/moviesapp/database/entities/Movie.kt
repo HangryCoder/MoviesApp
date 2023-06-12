@@ -9,4 +9,5 @@ data class Movie(
     val title: String?,
     val poster: String?,
     val rating: String?,
+    var playlistIds: List<Int> = emptyList()
 )

@@ -5,9 +5,9 @@ import androidx.room.TypeConverter
 class Converters {
 
     @TypeConverter
-    fun fromListToString(list: List<Int>?): String? {
+    fun fromListToString(list: List<Int>): String {
         val sb = StringBuilder()
-        if (list.isNullOrEmpty()) return null
+        if (list.isEmpty()) return ""
 
         list.forEach {
             sb.append(",")
@@ -17,9 +17,19 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromStringToList(str: String?): List<Int> {
-        return if (!str.isNullOrEmpty()) {
+    fun fromStringToList(str: String): List<Int> {
+        return if (str.isNotEmpty()) {
             str.split(",").map { it.toInt() }
         } else emptyList()
     }
+
+    /*@TypeConverter
+    fun fromIntegerToString(value: Int): String {
+       return value.toString()
+    }*/
+
+    /* @TypeConverter
+     fun fromStringToInteger(str: String): Int {
+         return
+     }*/
 }

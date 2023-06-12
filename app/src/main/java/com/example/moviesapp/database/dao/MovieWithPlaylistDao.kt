@@ -5,9 +5,10 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.moviesapp.database.MovieWithPlaylists
-import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
+//import com.example.moviesapp.database.MovieWithPlaylists
+//import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
 
+/*
 @Dao
 interface MovieWithPlaylistDao {
 
@@ -17,4 +18,4 @@ interface MovieWithPlaylistDao {
     @Transaction
     @Query("SELECT * FROM Movie")
     suspend fun getMoviesWithPlaylists(): List<MovieWithPlaylists>
-}
+}*/
