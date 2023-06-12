@@ -1,7 +1,6 @@
 package com.example.moviesapp.repository
 
 import com.example.moviesapp.database.MovieWithPlaylists
-import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
 import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.datasource.LocalDataSource

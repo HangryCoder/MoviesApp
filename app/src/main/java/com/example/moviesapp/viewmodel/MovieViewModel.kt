@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviesapp.database.MovieWithPlaylists
-import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.moviesapp.database.MovieWithPlaylists
-import com.example.moviesapp.database.entities.Movie
 import com.example.moviesapp.databinding.ItemMovieBinding
 
 const val MOVIE_BASE_URL = "https://image.tmdb.org/t/p/w500"
