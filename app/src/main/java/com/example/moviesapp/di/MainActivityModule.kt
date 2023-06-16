@@ -17,7 +17,7 @@ abstract class MainActivityModule {
 abstract class MainActivityFragmentsModule {
 
     @FragmentScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [PlaylistBottomSheetModule::class])
     abstract fun contributePlaylistBottomSheet(): PlaylistBottomSheet
 
     @FragmentScope

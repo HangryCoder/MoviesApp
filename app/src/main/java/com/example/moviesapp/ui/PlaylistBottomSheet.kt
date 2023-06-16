@@ -15,7 +15,9 @@ import javax.inject.Inject
 class PlaylistBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var binding: PlaylistBottomSheetBinding
-    private var playlistAdapter = PlaylistAdapter()
+
+    @Inject
+    lateinit var playlistAdapter: PlaylistAdapter
 
     @Inject
     lateinit var viewModel: MovieViewModel
