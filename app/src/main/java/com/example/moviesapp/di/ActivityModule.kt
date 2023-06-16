@@ -4,7 +4,7 @@ import com.example.moviesapp.ui.adapter.MovieAdapter
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = [MainActivityFragmentsModule::class])
 class ActivityModule {
 
     @Provides
