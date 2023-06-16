@@ -10,6 +10,7 @@ import com.example.moviesapp.databinding.PlaylistBottomSheetBinding
 import com.example.moviesapp.ui.adapter.PlaylistAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class PlaylistBottomSheet : BottomSheetDialogFragment() {
@@ -17,15 +18,20 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: PlaylistBottomSheetBinding
     private var playlistAdapter = PlaylistAdapter()
 
-//    @Inject
-//    lateinit var viewModel: MovieViewModel
+    /*@Inject
+    lateinit var viewModel: MovieViewModel*/
 
-    var viewModel: MovieViewModel? = null
+     var viewModel: MovieViewModel? = null
+    /*override fun onAttach(activity: Activity) {
+        AndroidInjection.inject(activity)
+        super.onAttach(activity)
+    }*/
 
-    /*  override fun onAttach(context: Context) {
-          (activity as MainActivity).activityComponent.inject(this)
-          super.onAttach(context)
-      }*/
+    override fun onAttach(context: Context) {
+        // (activity as MainActivity).activityComponent.inject(this)
+        //AndroidInjection.inject(requireActivity())
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

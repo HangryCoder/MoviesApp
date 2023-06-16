@@ -8,9 +8,10 @@ import com.example.moviesapp.di.ActivityComponent
 import com.example.moviesapp.ui.adapter.MovieAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
 import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var activityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setupDagger()
+        //setupDagger()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupDagger() {
        /* activityComponent = (application as MyApplication).appComponent.activityComponent().create()
         activityComponent.inject(this)*/
-        AndroidInjection.inject(this)
+       // AndroidInjection.inject(this)
     }
 
     private fun initialSetup() {
