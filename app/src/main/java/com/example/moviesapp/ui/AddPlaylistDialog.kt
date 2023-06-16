@@ -1,6 +1,7 @@
 package com.example.moviesapp.ui
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
@@ -8,15 +9,16 @@ import androidx.fragment.app.DialogFragment
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.DialogAddAPlaylistBinding
 import com.example.moviesapp.viewmodel.MovieViewModel
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class AddPlaylistDialog : DialogFragment() {
 
-    var viewModel: MovieViewModel? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //Temporary hack!
-        viewModel = (activity as MainActivity).viewModel
+    @Inject
+    lateinit var viewModel: MovieViewModel
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -27,7 +29,7 @@ class AddPlaylistDialog : DialogFragment() {
             .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 val playlistName = editText.text.toString()
                 if (playlistName.isNotEmpty()) {
-                    viewModel?.addPlayList(playlistName)
+                    viewModel.addPlayList(playlistName)
                     dialog.dismiss()
                 }
             }.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->

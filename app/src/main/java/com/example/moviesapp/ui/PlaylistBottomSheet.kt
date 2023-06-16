@@ -1,6 +1,5 @@
 package com.example.moviesapp.ui
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import com.example.moviesapp.databinding.PlaylistBottomSheetBinding
 import com.example.moviesapp.ui.adapter.PlaylistAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -22,15 +20,7 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
     @Inject
     lateinit var viewModel: MovieViewModel
 
-     //var viewModel: MovieViewModel? = null
-    /*override fun onAttach(activity: Activity) {
-        AndroidInjection.inject(activity)
-        super.onAttach(activity)
-    }*/
-
     override fun onAttach(context: Context) {
-        // (activity as MainActivity).activityComponent.inject(this)
-        //AndroidInjection.inject(requireActivity())
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
@@ -55,18 +45,15 @@ class PlaylistBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupRecyclerView() {
         playlistAdapter.onClick = {
-            viewModel?.addMovieToPlaylist(it)
+            viewModel.addMovieToPlaylist(it)
             this.dismiss()
         }
         binding.playlistRecyclerView.adapter = playlistAdapter
     }
 
     private fun fetchPlaylists() {
-        //Temporarily using this hack to access viewModel
-        //viewModel = (activity as MainActivity).viewModel
-
-        viewModel?.getPlaylists()
-        viewModel?.playlists?.observe(this) {
+        viewModel.getPlaylists()
+        viewModel.playlists.observe(this) {
             playlistAdapter.playlists = it
             playlistAdapter.notifyDataSetChanged()
         }
