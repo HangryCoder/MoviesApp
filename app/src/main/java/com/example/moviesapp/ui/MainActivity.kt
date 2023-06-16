@@ -7,6 +7,7 @@ import com.example.moviesapp.databinding.ActivityMainBinding
 import com.example.moviesapp.di.ActivityComponent
 import com.example.moviesapp.ui.adapter.MovieAdapter
 import com.example.moviesapp.viewmodel.MovieViewModel
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +32,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupDagger() {
-        activityComponent = (application as MyApplication).appComponent.activityComponent().create()
-        activityComponent.inject(this)
+       /* activityComponent = (application as MyApplication).appComponent.activityComponent().create()
+        activityComponent.inject(this)*/
+        AndroidInjection.inject(this)
     }
 
     private fun initialSetup() {
