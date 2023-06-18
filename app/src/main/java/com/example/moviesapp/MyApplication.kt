@@ -10,15 +10,9 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-
 class MyApplication : Application(), HasAndroidInjector {
 
     private val BASE_URL = "https://api.themoviedb.org/"
-
-//    val appComponent: ApplicationComponent by lazy {
-//        DaggerApplicationComponent.builder().networkModule(NetworkModule(BASE_URL))
-//            .databaseModule(DatabaseModule(applicationContext)).build()
-//    }
 
     lateinit var appComponent: ApplicationComponent
 

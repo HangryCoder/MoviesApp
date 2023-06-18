@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AndroidInjectionModule::class, MainActivityModule::class,/* SubcomponentsModule::class,*/ ApplicationModule::class]
+    modules = [AndroidInjectionModule::class, ActivityModule::class,/* SubcomponentsModule::class,*/ ApplicationModule::class]
 )
 interface ApplicationComponent  {
     //fun activityComponent(): ActivityComponent.Factory

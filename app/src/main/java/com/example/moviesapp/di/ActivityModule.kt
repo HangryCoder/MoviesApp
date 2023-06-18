@@ -1,24 +1,12 @@
 package com.example.moviesapp.di
 
-import androidx.lifecycle.ViewModelProvider
 import com.example.moviesapp.ui.MainActivity
-import com.example.moviesapp.ui.adapter.MovieAdapter
-import com.example.moviesapp.viewmodel.MovieViewModel
 import dagger.Module
-import dagger.Provides
+import dagger.android.ContributesAndroidInjector
 
-@Module(includes = [MainActivityFragmentsModule::class])
-class ActivityModule {
-
+@Module(includes = [MovieViewModelModule::class])
+abstract class ActivityModule {
     @ActivityScope
-    @Provides
-    fun provideMoviesViewModel(
-        activity: MainActivity,
-        factory: AppViewModelFactory
-    ): MovieViewModel {
-        return ViewModelProvider(activity, factory)[MovieViewModel::class.java]
-    }
-
-    @Provides
-    fun provideAdapter(): MovieAdapter = MovieAdapter()
+    @ContributesAndroidInjector(modules = [MainActivityModule::class])
+    abstract fun contributeMainActivity(): MainActivity
 }
