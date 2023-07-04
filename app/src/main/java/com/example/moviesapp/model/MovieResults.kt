@@ -10,3 +10,10 @@ data class Movie(
     @Json(name = "poster_path") val poster: String?,
     @Json(name = "vote_average") val rating: Float?,
 )
+
+data class ErrorResponse(
+    @Json(name="status_code") val statusCode: Int,
+    @Json(name="status_message") val statusMsg: String,
+    @Json(name="success") val success: Boolean,
+
+)

@@ -5,6 +5,7 @@ import com.example.moviesapp.database.entities.MoviePlaylistCrossRef
 import com.example.moviesapp.database.entities.Playlist
 import com.example.moviesapp.datasource.LocalDataSource
 import com.example.moviesapp.datasource.RemoteDataSource
+import com.example.moviesapp.networking.NetworkResponse
 import com.example.moviesapp.utils.toMovieEntity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,7 +18,20 @@ class MovieRepository @Inject constructor(
     suspend fun getPopularMoviesWithPlaylists(): List<MovieWithPlaylists>? {
         var movieWithPlaylists: List<MovieWithPlaylists>? = localDataSource.getMovieWithPlaylists()
         if (movieWithPlaylists.isNullOrEmpty()) {
-            try {
+
+            when (val response = remoteDataSource.getPopularMovies()) {
+                is NetworkResponse.Success -> {
+                    response.body.toMovieEntity()?.let {
+                        localDataSource.insertMovies(it)
+                    }
+                    movieWithPlaylists = localDataSource.getMovieWithPlaylists()
+                }
+                else -> {
+                    //Error Case
+                }
+            }
+
+            /*try {
                 val response = remoteDataSource.getPopularMovies()
                 response.toMovieEntity()?.let {
                     localDataSource.insertMovies(it)
@@ -25,7 +39,7 @@ class MovieRepository @Inject constructor(
                 movieWithPlaylists = localDataSource.getMovieWithPlaylists()
             } catch (e: Exception) {
                 e.printStackTrace()
-            }
+            }*/
         }
 
         return movieWithPlaylists
