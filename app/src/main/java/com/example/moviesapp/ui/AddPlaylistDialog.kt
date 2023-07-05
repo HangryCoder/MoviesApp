@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.DialogAddAPlaylistBinding
+import com.example.moviesapp.utils.isValid
 import com.example.moviesapp.viewmodel.MovieViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class AddPlaylistDialog : DialogFragment() {
         return AlertDialog.Builder(requireContext()).setView(binding.root)
             .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 val playlistName = editText.text.toString()
-                if (playlistName.isNotEmpty()) {
+                if (playlistName.isValid()) {
                     viewModel.addPlayList(playlistName)
                     dialog.dismiss()
                 }
